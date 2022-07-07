@@ -1,0 +1,5 @@
+.idea/
+dist/
+setup.cfg
+test_lib/
+wbxSearch.egg-info/

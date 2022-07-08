@@ -9,5 +9,5 @@ from .filterArgs import FilterArgs
 from .minerArgs import MinerArgs
 
 __author__ = "ZhuravlevDmi"
-__version__ = "0.0.1"
+__version__ = "0.0.3"
 __email__ = "Dima15129@gmail.com"

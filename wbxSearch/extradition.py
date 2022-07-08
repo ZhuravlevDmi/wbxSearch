@@ -53,9 +53,7 @@ class Extradition:
         return True if self.active.lower() == "yes" else False
 
     def record_for_write_file(self):
-        return [
-            f"{self.search_query}|{self.preset_iD}|{self.active}|{self.kind}|{self.parent}|{self.miner}|{self.miners_args}" \
-            f"|{self.shard_kind}|{self.query}|{self.category} "]
+        return [f"{self.search_query}|{self.preset_iD}|{self.active}|{self.kind}|{self.parent}|{self.miner}|{self.miners_args_object.get_result_for_write()}|{self.shard_kind}|{self.query}|{self.category}"]
 
     def __str__(self):
         return f"{self.search_query}|{self.preset_iD}|{self.active}|{self.kind}|{self.parent}|{self.miner}|{self.miners_args_object.get_result_for_write()}|{self.shard_kind}|{self.query}|{self.category}"

@@ -8,7 +8,7 @@ from setuptools import setup
 :license: Apache License, version 2.0, see LICENSE file
 """
 
-version = "0.0.1"
+version = "0.0.3"
 
 long_description = "..."
 

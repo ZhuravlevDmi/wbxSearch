@@ -7,6 +7,7 @@ from .classCSV import WorkCSV
 from .extradition import Extradition
 from .filterArgs import FilterArgs
 from .minerArgs import MinerArgs
+from .WorkExtradition import WorkExtradition
 
 __author__ = "ZhuravlevDmi"
 __version__ = "0.0.3"

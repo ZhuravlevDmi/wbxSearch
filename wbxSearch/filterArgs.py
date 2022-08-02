@@ -97,3 +97,4 @@ class FilterArgs:
     def check_filter_args(self):
         """функция возвращает tuple с аргументами фильтра
         пример: ("brandId",) или ("brandId","subjectId",)"""
+        pass

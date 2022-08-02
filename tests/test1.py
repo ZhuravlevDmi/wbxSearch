@@ -1,0 +1,6 @@
+"""тест функции WorkExtradition.search_query_search"""
+"""тест функции WorkExtradition.search_preset_id"""
+"""тест функции WorkExtradition.active_search()"""
+"""тест функции WorkExtradition.kind_search"""
+"""тест функции WorkExtradition.parent_search"""
+"""тест функции WorkExtradition.param_seaarch()"""

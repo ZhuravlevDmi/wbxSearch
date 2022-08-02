@@ -2,7 +2,7 @@ import csv
 
 
 class WorkCSV:
-    def __init__(self, path_file: str, file_name: str):
+    def __init__(self, file_name: str, path_file: str = ""):
         self.path_file = path_file
         self.file_name = file_name
         self.full_path = path_file + file_name
@@ -23,11 +23,11 @@ class WorkCSV:
                     list_info_csv.append(row)
             return list_info_csv
 
-    def write_csv(self, data: list):
+    def write_csv(self, data: list, delimiter: str = "|"):
         """создаем новый csv файл, прнимает путь, название файла и  data(инфо, которую записываем в файл)"""
 
         with open(self.full_path, 'w') as f:
-            writer = csv.writer(f)
+            writer = csv.writer(f, delimiter=delimiter)
             for row in data:
                 writer.writerow(row)
 

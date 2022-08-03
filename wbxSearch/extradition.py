@@ -1,7 +1,7 @@
 # 0 (задний фонарь на велосипед) 'Search Query'
 # 1 10776176                     'PresetID'
-# 2 yes                          'Active' +
-# 3 common                       'Kind' +
+# 2 yes                          'Active'
+# 3 common                       'Kind'
 # 4 empty                        'Parent'
 # 5 elasticsearch (miner)        'Miner'
 # 6 miner's parametr 'Miner'     "Miner's args"
@@ -78,9 +78,9 @@ class Extradition:
                 raise "Не правильно задан параметр"
 
     def record_for_write_file(self):
-        return f"{self.search_query}|{self.preset_iD}|{self.active}|{self.kind}|{self.parent}|{self.miner}|" \
+        return f"{self.search_query}|{self.preset_id}|{self.active}|{self.kind}|{self.parent}|{self.miner}|" \
                f"{self.miners_args_object.get_result_for_write()}|" \
                f"{self.shard_kind}|{self.query}|{self.category}".split("|")
 
     def __str__(self):
-        return f"{self.search_query}|{self.preset_iD}|{self.active}|{self.kind}|{self.parent}|{self.miner}|{self.miners_args_object.get_result_for_write()}|{self.shard_kind}|{self.query}|{self.category}"
+        return f"{self.search_query}|{self.preset_id}|{self.active}|{self.kind}|{self.parent}|{self.miner}|{self.miners_args_object.get_result_for_write()}|{self.shard_kind}|{self.query}|{self.category}"

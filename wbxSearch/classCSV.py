@@ -2,22 +2,20 @@ import csv
 
 
 class WorkCSV:
-    def __init__(self, file_name: str, path_file: str = ""):
+    def __init__(self, path_file: str = ""):
         self.path_file = path_file
-        self.file_name = file_name
-        self.full_path = path_file + file_name
 
     def read_csv(self, delimiter: bool = True, delimiter_symbol: str = "|") -> list:
         """читаем csv файл, отдаем инфо инфо в виде list"""
         if delimiter:
-            with open(self.full_path) as f:
+            with open(self.path_file) as f:
                 reader = csv.reader(f, delimiter=delimiter_symbol, quotechar="}")
                 list_info_csv = list(reader)
 
             return list_info_csv
         else:
             list_info_csv = []
-            with open(self.full_path) as f:
+            with open(self.path_file) as f:
                 reader = csv.reader(f)
                 for row in reader:
                     list_info_csv.append(row)
@@ -26,7 +24,7 @@ class WorkCSV:
     def write_csv(self, data: list, delimiter: str = "|"):
         """создаем новый csv файл, прнимает путь, название файла и  data(инфо, которую записываем в файл)"""
 
-        with open(self.full_path, 'w') as f:
+        with open(self.path_file, 'w') as f:
             writer = csv.writer(f, delimiter=delimiter)
             for row in data:
                 writer.writerow(row)
@@ -35,7 +33,7 @@ class WorkCSV:
         """Записываем в data(в результат выполнения функции, только те строки,
         в которым присутствует fragment)"""
         my_data = []
-        with open(self.full_path) as csvfile:
+        with open(self.path_file) as csvfile:
             spam_reader = csv.reader(csvfile)
 
             for row in spam_reader:

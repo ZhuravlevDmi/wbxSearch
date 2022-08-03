@@ -10,5 +10,5 @@ from .minerArgs import MinerArgs
 from .WorkExtradition import WorkExtradition
 
 __author__ = "ZhuravlevDmi"
-__version__ = "0.0.3"
+__version__ = "0.1.1"
 __email__ = "Dima15129@gmail.com"

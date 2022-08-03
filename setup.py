@@ -8,7 +8,7 @@ from setuptools import setup
 :license: Apache License, version 2.0, see LICENSE file
 """
 
-version = "0.0.3"
+version = "0.1.1"
 
 long_description = "..."
 
@@ -18,7 +18,7 @@ setup(
     author="ZhuravlevDmi",
     author_email="Dima15129@gmail.com",
 
-    description=(u"123"),
+    description=(u"Удобный инструмент для работы с выдачами"),
     long_description=long_description,
     url="https://github.com/ZhuravlevDmi/wbxSearch",
     download_url="https://github.com/ZhuravlevDmi/wbxSearch/archive/v{}.zip".format(version),

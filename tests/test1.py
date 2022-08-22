@@ -12,3 +12,5 @@
 
 """тест функции Extradition.record_for_write_file"""
 
+l = [1,2,41,2,3,4,5, 1, 3]
+print(list(set(l)))

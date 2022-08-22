@@ -29,7 +29,7 @@ class ActiveSearchTest(TestCase):
         """проверка поиска где столбец active = no"""
         res_list = [x.record_for_write_file() for x in
                     test_w_ex.active_search(False)]
-        self.assertEqual(res_list, result_false_active_search)
+        self.assertEqual(res_list.sort(), result_false_active_search.sort())
 
 
 if __name__ == '__main__':

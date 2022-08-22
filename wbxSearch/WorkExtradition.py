@@ -2,11 +2,11 @@ from wbxSearch import WorkCSV, Extradition
 
 
 class WorkExtradition:
-    def __init__(self, path_read_file: str, path_write_file: str = ""):
-        self.csv = WorkCSV(path_file=path_read_file)
-        self._data_csv = self.csv.read_csv()
+    def __init__(self, path_read_files: str | list, path_write_file: str = ""):
+        self.path_read_files = self._get_path_read_files(path_read_files)
         self.path_write_file = path_write_file
-        self._list_ex = [Extradition(x) for x in self._data_csv]
+        self._dict_ex = self._get_dict_ex()
+        self._full_list_ex = self._get_full_list_ex()
 
         """в этот лист записываются результаты поиска выдач, потом из этого листа
         # формируем этот файл, либо удалям эти выдачи из листа list_ex"""
@@ -14,6 +14,29 @@ class WorkExtradition:
 
         if self.path_write_file:
             self._new_csv = WorkCSV(path_file=path_write_file)
+
+    @staticmethod
+    def _get_path_read_files(path_read_files: str | list) -> list:
+        if isinstance(path_read_files, str):
+            return [path_read_files]
+        return path_read_files
+
+    def _get_dict_ex(self) -> dict:
+        """Формируется словарь, ключ - путь к файлу, значении - лист из выдач в этом файле"""
+        result_dict = {}
+        for path_read_file in self.path_read_files:
+            self.csv = WorkCSV(path_file=path_read_file)
+            self._data_csv = self.csv.read_csv()
+            list_ex = [Extradition(x) for x in self._data_csv]
+            result_dict[path_read_file] = list_ex
+        return result_dict
+
+    def _get_full_list_ex(self):
+        """Формируется лист выдач из всех переданных в объект фалов"""
+        full_list_ex = []
+        for path, list_ex in self._dict_ex.items():
+            full_list_ex += list_ex
+        return full_list_ex
 
     def _param_search(self, param: str,
                       value_params: str | list,
@@ -33,19 +56,20 @@ class WorkExtradition:
         for value_param in value_params:
             # поиск по полному совпадению
             if complete_match and contains is False:
-                result_list += [x for x in self._list_ex if value_param == x.get_param(param)]
+                result_list += [x for x in self._full_list_ex if value_param == x.get_param(param)]
             # поиск по частичному совпадению
             elif complete_match is False and contains is False:
-                result_list += [x for x in self._list_ex if value_param in x.get_param(param)]
+                result_list += [x for x in self._full_list_ex if value_param in x.get_param(param)]
             # попадают в результат все выдачи где нет полного совпадения
             elif complete_match and contains:
-                result_list += [x for x in self._list_ex if value_param != x.get_param(param)]
+                result_list += [x for x in self._full_list_ex if value_param != x.get_param(param)]
             # попадают в результат все выдачи где нет частичного совпадения
             elif complete_match is False and contains:
-                result_list += [x for x in self._list_ex if value_param not in x.get_param(param)]
+                result_list += [x for x in self._full_list_ex if value_param not in x.get_param(param)]
             else:
                 raise "Не правильно выставлены условия"
 
+        result_list = list(set(result_list))
         self._new_list_ex += result_list
         return result_list
 
@@ -76,9 +100,9 @@ class WorkExtradition:
         return self._param_search("preset_id", preset_id, complete_match, contains)
 
     def active_search(self, active: bool = True) -> list:
-        """ищем записи по 3 столбцу в выдачах, это поле актив, оно бывает двух видов yes и no,
+        """Ищем записи по 3 столбцу в выдачах, это поле актив, оно бывает двух видов yes и no,
         по умолчанию ищем yes"""
-        result_list = [x for x in self._list_ex if x.get_active() is active]
+        result_list = [x for x in self._full_list_ex if x.get_active() is active]
         self._new_list_ex += result_list
         return result_list
 
